@@ -7,8 +7,7 @@ int main(void) {
 char izbor;
 float celsius, fahrenheit;
 
-while(izbor !='3')
-{
+while(izbor !='3') {
 printf("Sta zelite da konvertujete?:\n");
 printf("\n----------------------------");
 printf("\n1. Iz Celzijusa u Farenhaite\n");
