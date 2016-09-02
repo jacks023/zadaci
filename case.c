@@ -25,7 +25,8 @@ int main(void) {
     printf("\n----------------------------");
     printf("\n1. Iz Celzijusa u Farenhaite\n");
     printf("2. Iz Farenhaita u Celzijuse\n");
-    printf("3. Izlaz\n");
+    printf("3. Tablica konvertovanja\n");
+    printf("4. Izlaz\n");
     printf("Unesite vas izbor: ");
 
     izbor = getchar();
@@ -38,6 +39,13 @@ int main(void) {
         konvert_fc(celsius, fahrenheit);
       break;
       case '3':
+        printf("Celzijusi Farenhaiti\n");
+        celsius = 0;
+        while (celsius <= 100) {
+          printf("%.2f      %.2f\t\n", celsius, fahrenheit);
+          celsius = celsius + 5;
+          fahrenheit = (1.8 * celsius) + 32; }
+      case '4':
         printf("Hvala na koristenju programa.\n");
       break;
       default:
