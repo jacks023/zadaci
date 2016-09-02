@@ -15,6 +15,14 @@ void konvert_fc(float celsius, float fahrenheit) {
   celsius = (5.0/9.0) * (fahrenheit-32);
   printf("Temperatura u Celsiusima je: %f\n", celsius);
 }
+void tabela(float celsius, float fahrenheit) {
+  printf("Celzijusi Farenhaiti\n");
+  celsius = 0;
+  while (celsius <= 100) {
+    printf("%.2f      %.2f\t\n", celsius, fahrenheit);
+    celsius = celsius + 5;
+    fahrenheit = (1.8 * celsius) + 32; }
+}
 
 int main(void) {
   int izbor = 0;
@@ -39,12 +47,7 @@ int main(void) {
         konvert_fc(celsius, fahrenheit);
       break;
       case '3':
-        printf("Celzijusi Farenhaiti\n");
-        celsius = 0;
-        while (celsius <= 100) {
-          printf("%.2f      %.2f\t\n", celsius, fahrenheit);
-          celsius = celsius + 5;
-          fahrenheit = (1.8 * celsius) + 32; }
+        tabela(celsius, fahrenheit);
       case '4':
         printf("Hvala na koristenju programa.\n");
       break;
