@@ -2,10 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 int main(void) {
 char izbor;
 float celsius, fahrenheit;
 
+while(izbor !='3')
+{
 printf("Sta zelite da konvertujete?:\n");
 printf("\n----------------------------");
 printf("\n1. Iz Celzijusa u Farenhaite\n");
@@ -14,6 +17,7 @@ printf("3. Izlaz\n");
 printf("Unesite vas izbor: ");
 
 scanf("%c", &izbor);
+izbor = getchar();
 
 switch (izbor) {
 case '1':
@@ -31,12 +35,15 @@ printf("Temperatura u Celsiusima je: %f\n", celsius);
 break;
 
 case '3':
+
 printf("Hvala na koristenju programa.\n");
 break;
 default:
 printf("Pogresan unos, pokusajte ponovo.\n");
 return main();
 }
+
+(void)getchar();
+}
 return 0;
 }
-
