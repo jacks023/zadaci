@@ -1,39 +1,41 @@
 #include <stdio.h>
 #include <string.h>
-int main(){
+#include <stdlib.h>
 
-char unos;
-float celsius,fahrenheit;
+int main(void) {
+char izbor;
+float celsius, fahrenheit;
 
 printf("Sta zelite da konvertujete?:\n");
-printf("a) Iz Celzijusa u Farenhaite\n");
-printf("b) Iz Farenhaita u Celzijuse\n");
+printf("\n----------------------------");
+printf("\n1. Iz Celzijusa u Farenhaite\n");
+printf("2. Iz Farenhaita u Celzijuse\n");
+printf("3. Izlaz\n");
+printf("Unesite vas izbor: ");
 
-scanf("%c",&unos);
+scanf("%c", &izbor);
 
-switch (unos)
-{
-case 'a':
-
+switch (izbor) {
+case '1':
 printf("\nUnesite temperaturu u Celzijusima: ");
-scanf("%f",&celsius);
-
+scanf("%f", &celsius);
 fahrenheit = (1.8 * celsius) + 32;
-printf("Temperatura u Farenhaitima je: %f\n",fahrenheit);
+printf("Temperatura u Farenhaitima je: %f\n", fahrenheit);
 break;
-case 'b':
-{
 
+case '2':
 printf("\nUnesite temperaturu u Farenhaitima: ");
-scanf("%f",&fahrenheit);
-
+scanf("%f", &fahrenheit);
 celsius = (5.0/9.0) * (fahrenheit-32);
-printf("Temperatura u Celsiusima je: %f\n",celsius);
+printf("Temperatura u Celsiusima je: %f\n", celsius);
 break;
-}
+
+case '3':
+printf("Hvala na koristenju programa.\n");
+break;
 default:
-printf("Pogresan unos\n");
-break;
+printf("Pogresan unos, pokusajte ponovo.\n");
+return main();
 }
 return 0;
 }
