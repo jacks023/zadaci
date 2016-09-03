@@ -3,32 +3,38 @@
 #include <string.h>
 #include <stdlib.h>
 
-void konvert_cf(float celsius, float fahrenheit) {
+void konvert_cf(float celsius1, float fahrenheit1) {
+  float celsius;
+  float fahrenheit;
   printf("\nUnesite temperaturu u Celzijusima: ");
   scanf("%f", &celsius);
   fahrenheit = (1.8 * celsius) + 32;
   printf("Temperatura u Farenhaitima je: %f\n", fahrenheit);
 }
-void konvert_fc(float celsius, float fahrenheit) {
+void konvert_fc(float celsius1, float fahrenheit1) {
+  float celsius;
+  float fahrenheit;
   printf("\nUnesite temperaturu u Farenhaitima: ");
   scanf("%f", &fahrenheit);
   celsius = (5.0/9.0) * (fahrenheit-32);
   printf("Temperatura u Celsiusima je: %f\n", celsius);
 }
-void tabela(float celsius, float fahrenheit) {
+void tabela(float celsius1, float fahrenheit1) {
+  float celsius;
+  float fahrenheit;
   printf("Celzijusi Farenhaiti\n");
   celsius = 0;
   while (celsius <= 100) {
+    fahrenheit = (1.8 * celsius) + 32;
     printf("%.2f      %.2f\t\n", celsius, fahrenheit);
-    celsius = celsius + 5;
-    fahrenheit = (1.8 * celsius) + 32; }
+    celsius = celsius + 5; }
 }
 
-int main(void) {
-  int izbor = 0;
-  float celsius, fahrenheit;
+int main(celsius, fahrenheit) {
 
-  while (izbor !='3') {
+  int izbor = 0;
+
+  while (izbor !='4') {
     printf("Sta zelite da konvertujete?:\n");
     printf("\n----------------------------");
     printf("\n1. Iz Celzijusa u Farenhaite\n");
