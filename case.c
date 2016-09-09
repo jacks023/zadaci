@@ -59,31 +59,32 @@ int prikazi_menu(int *izbor) {
   scanf("%d", &*izbor);
   return *izbor;
 }
-struct memory {
+struct istorija {
   char tip_konvertovanja;
-  float ulazna_temp;
-  float izlazna_temp;
+  float celsius;
+  float fahrenheit;
 };
-struct memory history[5];
+struct istorija memorija[5];
 
-void memorisi(float celsius,float fahrenheit, struct memory history[], int izbor) {
+void memorisi(float celsius,float fahrenheit, struct istorija memorija[], int izbor) {
   int i,n;
   if (izbor == 4) {
     for ( i = 0; i < n; i++) {
       konvert_cf();
-      history [0].ulazna_temp = celsius;
-      history [1].ulazna_temp = celsius;
-      history [2].ulazna_temp = celsius;
-      history [3].ulazna_temp = celsius;
-      history [4].ulazna_temp = celsius;
+      memorija [i].celsius = celsius;
+      memorija [i].celsius = celsius;
+      memorija [i].celsius = celsius;
+      memorija [i].celsius = celsius;
+      memorija [i].celsius = celsius;
 }
 }
 }
-void istorija(float celsius, struct memory history[]){
-  int k;
-  for ( k = 0; k < 5; k++){
-    printf("Konverzija %d je: %f\n", k + 1, history[k].tip_konvertovanja );
-  }
+void istorijat (int izbor, struct istorija memorija[], int i) {
+  if (izbor == 4) {
+    printf("%.2lf\n", memorija[i].celsius[i]);
+    printf("%.2lf\n", memorija[i].celsius[i]);
+    printf("%.2lf\n", memorija[i].celsius[i]);
+}
 }
 int main() {
 
@@ -104,7 +105,7 @@ int main() {
     break;
   case 4:
     printf("\nIstorijat konvertovanja\n");
-
+    istorijat(izbor,memorija, i);
   case 5:
     printf("Hvala na koristenju programa.\n");
     break;
