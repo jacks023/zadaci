@@ -22,17 +22,34 @@ void konvert_fc() {
 void tabela() {
   float celsius;
   float fahrenheit;
-  printf("Celzijusi Farenhaiti\n");
+  printf("\nCelzijusi Farenhaiti\n");
   printf("--------------------");
   celsius = 0;
   while (celsius <= 100) {
     fahrenheit = (1.8 * celsius) + 32;
     printf("\n%6.2f%11.2f", celsius, fahrenheit);
     celsius = celsius + 5; }
+    printf("\n--------------------\n");
+}
+void konvert_again1() {
+  char answer;
+  printf("\nDa li zelite da konvertujete ponovo ? [D/N]\n");
+  while (scanf(" %c", &answer) == 1 && answer == 'D' || answer == 'd') {
+  konvert_cf();
+  printf("\nDa li zelite da konvertujete ponovo? [D/N]\n");
+  }
+}
+void konvert_again2() {
+  char answer;
+  printf("\nDa li zelite da konvertujete ponovo ? [D/N]\n");
+  while (scanf(" %c", &answer) == 1 && answer == 'D' || answer == 'd') {
+  konvert_fc();
+  printf("\nDa li zelite da konvertujete ponovo? [D/N]\n");
+  }
 }
 int prikazi_menu(int *izbor) {
   printf("\nSta zelite da konvertujete?:");
-  printf("\n----------------------------");
+  printf("\n****************************");
   printf("\n1. Iz Celzijusa u Farenhaite\n");
   printf("2. Iz Farenhaita u Celzijuse\n");
   printf("3. Tablica konvertovanja\n");
@@ -42,7 +59,32 @@ int prikazi_menu(int *izbor) {
   scanf("%d", &*izbor);
   return *izbor;
 }
+struct memory {
+  char tip_konvertovanja;
+  float ulazna_temp;
+  float izlazna_temp;
+};
+struct memory history[5];
 
+void memorisi(float celsius,float fahrenheit, struct memory history[], int izbor) {
+  int i,n;
+  if (izbor == 4) {
+    for ( i = 0; i < n; i++) {
+      konvert_cf();
+      history [0].ulazna_temp = celsius;
+      history [1].ulazna_temp = celsius;
+      history [2].ulazna_temp = celsius;
+      history [3].ulazna_temp = celsius;
+      history [4].ulazna_temp = celsius;
+}
+}
+}
+void istorija(float celsius, struct memory history[]){
+  int k;
+  for ( k = 0; k < 5; k++){
+    printf("Konverzija %d je: %f\n", k + 1, history[k].tip_konvertovanja );
+  }
+}
 int main() {
 
   int izbor;
@@ -51,20 +93,24 @@ int main() {
   switch (izbor) {
   case 1:
     konvert_cf();
+    konvert_again1();
     break;
   case 2:
     konvert_fc();
+    konvert_again2();
     break;
   case 3:
     tabela();
     break;
   case 4:
-    printf("Istorijat konvertovanja\n");
+    printf("\nIstorijat konvertovanja\n");
+
   case 5:
     printf("Hvala na koristenju programa.\n");
     break;
   default:
     printf("Pogresan unos, pokusajte ponovo.\n");
+    return 0;
     }
   }
 }
