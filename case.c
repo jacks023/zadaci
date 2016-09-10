@@ -3,21 +3,38 @@
 #include <string.h>
 #include <stdlib.h>
 
-void konvert_cf() {
+struct istorija {
+  float celsius;
+  float fahrenheit;
+};
+struct istorija memorija[20];
+
+void unos_history_celsius(float celsius, struct istorija memorija[], int *i) {
+  memorija[*i].celsius = celsius;
+}
+void unos_history_fahrenheit(float fahrenheit, struct istorija memorija[],
+  int *k) {
+  memorija[*k].fahrenheit = fahrenheit;
+}
+float konvert_cf(int *k) {
   float celsius;
   float fahrenheit;
   printf("\nUnesite temperaturu u Celzijusima: ");
   scanf("%f", &celsius);
   fahrenheit = (1.8 * celsius) + 32;
+  unos_history_fahrenheit(fahrenheit,memorija,k);
   printf("Temperatura u Farenhaitima je: %f\n", fahrenheit);
+  return (fahrenheit);
 }
-void konvert_fc() {
+float konvert_fc(int *i) {
   float celsius;
   float fahrenheit;
   printf("\nUnesite temperaturu u Farenhaitima: ");
   scanf("%f", &fahrenheit);
   celsius = (5.0/9.0) * (fahrenheit-32);
+  unos_history_celsius(celsius,memorija,i);
   printf("Temperatura u Celsiusima je: %f\n", celsius);
+  return(celsius);
 }
 void tabela() {
   float celsius;
@@ -31,19 +48,22 @@ void tabela() {
     celsius = celsius + 5; }
     printf("\n--------------------\n");
 }
-void konvert_again1() {
+void konvert_again1(int *k) {
   char answer;
   printf("\nDa li zelite da konvertujete ponovo ? [D/N]\n");
   while (scanf(" %c", &answer) == 1 && answer == 'D' || answer == 'd') {
-  konvert_cf();
+  (*k)++;
+  konvert_cf(k);
   printf("\nDa li zelite da konvertujete ponovo? [D/N]\n");
   }
 }
-void konvert_again2() {
+void konvert_again2(int *i) {
   char answer;
   printf("\nDa li zelite da konvertujete ponovo ? [D/N]\n");
   while (scanf(" %c", &answer) == 1 && answer == 'D' || answer == 'd') {
-  konvert_fc();
+  (*i)++;
+  konvert_fc(i);
+
   printf("\nDa li zelite da konvertujete ponovo? [D/N]\n");
   }
 }
@@ -59,53 +79,48 @@ int prikazi_menu(int *izbor) {
   scanf("%d", &*izbor);
   return *izbor;
 }
-struct istorija {
-  char tip_konvertovanja;
-  float celsius;
-  float fahrenheit;
-};
-struct istorija memorija[5];
-
-void memorisi(float celsius,float fahrenheit, struct istorija memorija[], int izbor) {
-  int i,n;
-  if (izbor == 4) {
-    for ( i = 0; i < n; i++) {
-      konvert_cf();
-      memorija [i].celsius = celsius;
-      memorija [i].celsius = celsius;
-      memorija [i].celsius = celsius;
-      memorija [i].celsius = celsius;
-      memorija [i].celsius = celsius;
-}
-}
-}
-void istorijat (int izbor, struct istorija memorija[], int i) {
-  if (izbor == 4) {
-    printf("%.2lf\n", memorija[i].celsius[i]);
-    printf("%.2lf\n", memorija[i].celsius[i]);
-    printf("%.2lf\n", memorija[i].celsius[i]);
-}
+void history_ispis (struct istorija memorija[], int *izbor2) {
+  int j = 0;
+  for(j = 0; j < 5; j++) {
+    switch(*izbor2) {
+    case 1:
+    printf("%.2f\n", memorija[j].fahrenheit);
+    break;
+    case 2:
+    printf("%.2f\n", memorija[j].celsius);
+    break;
+    default:
+    printf("\nPogresan unos\n");
+    break;
+  }
+  }
 }
 int main() {
 
-  int izbor;
+  int izbor, izbor2;
+  int i = 0, k = 0;
+  char tip_konvertovanja;
   while (izbor != 5) {
   prikazi_menu(&izbor);
   switch (izbor) {
   case 1:
-    konvert_cf();
-    konvert_again1();
+    konvert_cf(&k);
+    konvert_again1(&k);
     break;
   case 2:
-    konvert_fc();
-    konvert_again2();
+    konvert_fc(&i);
+    konvert_again2(&i);
     break;
   case 3:
     tabela();
     break;
   case 4:
     printf("\nIstorijat konvertovanja\n");
-    istorijat(izbor,memorija, i);
+    printf("\n1.Iz Celzijusa u Farenhajte");
+    printf("\n2.Iz Farenhajta u Celzijuse\n");
+    scanf("%d",&izbor2);
+    history_ispis (memorija,&izbor2);
+    break;
   case 5:
     printf("Hvala na koristenju programa.\n");
     break;
