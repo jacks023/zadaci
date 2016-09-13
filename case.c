@@ -10,11 +10,24 @@ struct istorija {
 struct istorija memorija[20];
 
 void unos_history_celsius(float celsius, struct istorija memorija[], int *i) {
-  memorija[*i].celsius = celsius;
+  if ( *i > 4){
+    for ( (*i) = 1 ; (*i) < 5; (*i)++ ){
+      memorija[*i-1].celsius = memorija[*i].celsius; }
+      *i = 4;
+      memorija[*i].celsius = celsius; }
+  else {
+    memorija[*i].celsius = celsius;
+  }
 }
-void unos_history_fahrenheit(float fahrenheit, struct istorija memorija[],
-  int *k) {
-  memorija[*k].fahrenheit = fahrenheit;
+void unos_history_fahrenheit(float fahrenheit, struct istorija memorija[], int *k) {
+  if ( *k > 4){
+    for ( (*k) = 1 ; (*k) < 5; (*k)++ ){
+        memorija[*k-1].fahrenheit = memorija[*k].fahrenheit; }
+        *k = 4;
+        memorija[*k].fahrenheit = fahrenheit; }
+  else {
+    memorija[*k].fahrenheit = fahrenheit;
+  }
 }
 float konvert_cf(int *k) {
   float celsius;
@@ -80,53 +93,52 @@ int prikazi_menu(int *izbor) {
   return *izbor;
 }
 void history_ispis (struct istorija memorija[], int *izbor2) {
-  int j = 0;
-  for(j = 0; j < 5; j++) {
+  int j,k,i;
     switch(*izbor2) {
     case 1:
-    printf("%.2f\n", memorija[j].fahrenheit);
+      for(j = 0; j < 5; j++) {
+        printf("%d: %.2f\n",(j+1), memorija[j].fahrenheit);}
     break;
     case 2:
-    printf("%.2f\n", memorija[j].celsius);
+      for(j = 0; j < 5; j++) {
+        printf("%.2f\n", memorija[j].celsius);}
     break;
     default:
-    printf("\nPogresan unos\n");
+      printf("\nPogresan unos\n");
     break;
   }
-  }
-}
+ }
 int main() {
 
   int izbor, izbor2;
   int i = 0, k = 0;
-  char tip_konvertovanja;
   while (izbor != 5) {
-  prikazi_menu(&izbor);
+    prikazi_menu(&izbor);
   switch (izbor) {
   case 1:
     konvert_cf(&k);
     konvert_again1(&k);
-    break;
+  break;
   case 2:
     konvert_fc(&i);
     konvert_again2(&i);
-    break;
+  break;
   case 3:
     tabela();
-    break;
+  break;
   case 4:
     printf("\nIstorijat konvertovanja\n");
     printf("\n1.Iz Celzijusa u Farenhajte");
     printf("\n2.Iz Farenhajta u Celzijuse\n");
     scanf("%d",&izbor2);
     history_ispis (memorija,&izbor2);
-    break;
+  break;
   case 5:
     printf("Hvala na koristenju programa.\n");
-    break;
+  break;
   default:
     printf("Pogresan unos, pokusajte ponovo.\n");
-    return 0;
-    }
+  return 0;
   }
+ }
 }
